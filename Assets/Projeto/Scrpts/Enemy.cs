@@ -6,7 +6,8 @@ public class Enemy : MonoBehaviour
     public float health = 10f;
     public float moveSpeed = 3f;
     public float damageOnContact = 5f;
-
+    
+    public GameObject xpPrefab;
     private Transform playerTransform;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
@@ -52,11 +53,13 @@ public class Enemy : MonoBehaviour
     {
         health -= damage;
         if (health <= 0) Morrer();
-    }
 
-    void Morrer()
-    {
-        Destroy(gameObject);
     }
+    
+    void Morrer()
+   {
+    Instantiate(xpPrefab, transform.position, Quaternion.identity);
+    Destroy(gameObject);
+   }
 }
 
